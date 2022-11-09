@@ -89,6 +89,9 @@ from .ticker import (
 _log = logging.getLogger(__name__)
 
 
+def foresight_uncoverage():
+    return "Uncovered function!"
+
 def _copy_docstring_and_deprecators(method, func=None):
     if func is None:
         return functools.partial(_copy_docstring_and_deprecators, method)
