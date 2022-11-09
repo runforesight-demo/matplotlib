@@ -117,7 +117,9 @@ _REPL_DISPLAYHOOK = _ReplDisplayHook.NONE
 def _draw_all_if_interactive():
     if matplotlib.is_interactive():
         draw_all()
-
+        
+def foresight_uncovered():
+    return "pyplot file uncovered function for foresight!"
 
 def install_repl_displayhook():
     """
