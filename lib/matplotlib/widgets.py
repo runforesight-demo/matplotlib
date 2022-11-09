@@ -76,6 +76,9 @@ class Widget:
     def get_active(self):
         """Get whether the widget is active."""
         return self._active
+     
+    def foresight_uncovered():
+        return "Widget class uncovered function!"
 
     # set_active is overridden by SelectorWidgets.
     active = property(get_active, set_active, doc="Is the widget active?")
