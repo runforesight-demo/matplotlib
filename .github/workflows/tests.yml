@@ -4,18 +4,8 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  push:
-    branches-ignore:
-      - auto-backport-of-pr-[0-9]+
-      - v[0-9]+.[0-9]+.[0-9x]+-doc
   pull_request:
-    branches-ignore:
-      - v[0-9]+.[0-9]+.[0-9x]+-doc
-  schedule:
-    # 3:47 UTC on Saturdays
-    - cron: "47 3 * * 6"
-  workflow_dispatch:
-    workflow: "*"
+    types: [opened, reopened]
 
 env:
   NO_AT_BRIDGE: 1  # Necessary for GTK3 interactive test.
@@ -27,7 +17,6 @@ env:
 
 jobs:
   test:
-    if: "github.event_name == 'workflow_dispatch' || github.repository == 'matplotlib/matplotlib' && !contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[skip github]')"
     name: "Python ${{ matrix.python-version }} on ${{ matrix.os }} ${{ matrix.name-suffix }}"
     runs-on: ${{ matrix.os }}
 
