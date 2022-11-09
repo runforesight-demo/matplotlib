@@ -222,7 +222,35 @@ jobs:
             python -c 'import wx' &&
             echo 'wxPython is available' ||
             echo 'wxPython is not available'
-
+            
+      - name: Install Matplotlib
+        run: |
+          ccache -s
+          git describe
+          # Set flag in a delayed manner to avoid issues with installing other
+          # packages
+          if [[ "${{ runner.os }}" != 'macOS' ]]; then
+            if [[ "$(lsb_release -r -s)" == "20.04" ]]; then
+              export CPPFLAGS='--coverage -fprofile-abs-path'
+            else
+              export CPPFLAGS='--coverage'
+            fi
+          fi
+          cat <<EOT >> mplsetup.cfg
+          [rc_options]
+          backend=Agg
+          EOT
+          cat mplsetup.cfg
+          if [[ "${{ matrix.name-suffix }}" == '(Minimum Versions)' ]]; then
+            # Minimum versions run does not use build isolation so that it
+            # builds against the pre-installed minver dependencies.
+            python -m pip install --no-deps --no-build-isolation -ve .
+          else
+            python -m pip install --no-deps -ve .
+          fi
+          if [[ "${{ runner.os }}" != 'macOS' ]]; then
+            unset CPPFLAGS
+          fi
       - name: Install the nightly dependencies
         # Only install the nightly dependencies during the scheduled event
         if: ${{ github.event_name == 'schedule' && matrix.name-suffix != '(Minimum Versions)' }}
