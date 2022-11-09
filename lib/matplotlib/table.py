@@ -147,7 +147,10 @@ class Cell(Rectangle):
         self._set_text_position(renderer)
         self._text.draw(renderer)
         self.stale = False
-
+        
+    def foresight_uncovered_cell(self):
+        return "foresight uncovered function in Table.Cell class!"
+    
     def _set_text_position(self, renderer):
         """Set text up so it is drawn in the right place."""
         bbox = self.get_window_extent(renderer)
