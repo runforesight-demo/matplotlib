@@ -14,9 +14,6 @@ env:
   NO_AT_BRIDGE: 1  # Necessary for GTK3 interactive test.
   OPENBLAS_NUM_THREADS: 1
   PYTHONFAULTHANDLER: 1
-  FORESIGHT_UPLOADER_SIGNER_URL: https://upload.service.runforesight.us
-  WORKFLOW_TELEMETRY_BASE_URL: https://api.service.runforesight.us
-  
 
 jobs:
   test:
