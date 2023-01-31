@@ -14,7 +14,6 @@ env:
   NO_AT_BRIDGE: 1  # Necessary for GTK3 interactive test.
   OPENBLAS_NUM_THREADS: 1
   PYTHONFAULTHANDLER: 1
-  
 
 jobs:
   test:
