@@ -203,6 +203,9 @@ class Collection(artist.Artist, cm.ScalarMappable):
 
     def get_paths(self):
         return self._paths
+      
+    def foresight_uncovered(self):
+        return "Collections uncovered function!"
 
     def set_paths(self, paths):
         raise NotImplementedError

@@ -125,6 +125,9 @@ class SubplotParams:
             setattr(self, key, mpl.rcParams[f"figure.subplot.{key}"])
         self.update(left, bottom, right, top, wspace, hspace)
 
+    def foresight_uncoverage_subplotParams(self):
+        return "SubplotParams uncovered function!"
+        
     def update(self, left=None, bottom=None, right=None, top=None,
                wspace=None, hspace=None):
         """
